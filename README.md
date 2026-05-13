@@ -1,6 +1,6 @@
 # Smart Research Assistant
 
-A CLI-based Smart Research Assistant powered by the Claude API that autonomously decides which tools to call, loops through tool calls to gather information, and returns a clean, structured markdown research report.
+A CLI-based Smart Research Assistant powered by the Groq API that autonomously decides which tools to call, loops through tool calls to gather information, and returns a clean, structured markdown research report.
 
 ## Features
 - **Autonomous Tool Usage**: Chooses between web search, URL fetching, and a calculator based on the research query.
@@ -18,7 +18,7 @@ A CLI-based Smart Research Assistant powered by the Claude API that autonomously
 3. Setup API Keys in `.env`:
    Create a `.env` file in the root directory and add your keys:
    ```
-   ANTHROPIC_API_KEY=your_anthropic_key_here
+   GROQ_API_KEY=your_anthropic_key_here
    TAVILY_API_KEY=your_tavily_key_here
    ```
 
@@ -37,16 +37,8 @@ python main.py
 ## Architecture Diagram
 
 ```
-User Query → Claude API → tool_use? → Dispatch Tool → Append Result → Loop
+User Query → Groq API → tool_use? → Dispatch Tool → Append Result → Loop
                   ↓
               end_turn → Return Report
 ```
 
-## What this demonstrates for CCA-F
-- **Tool schema design**: Writing descriptions that reduce routing errors
-- **Agentic loop**: Correct `stop_reason` handling, no text-parsing anti-patterns
-- **Tool result formatting**: Proper `tool_result` message structure
-- **Context management**: Conversation history across multi-turn tool calls
-- **Structured output**: System prompt enforcing consistent report format
-- **Error propagation**: Tools returning errors gracefully, agent handling them
-- **Multi-tool calls**: Handling multiple `tool_use` blocks in one response
